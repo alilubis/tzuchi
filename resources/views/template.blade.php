@@ -6,6 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tzu Chi | Baksos</title>
 
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -176,10 +180,12 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+        
+          <a href="#" class="d-block">Administrator</a>
+          <!-- <a href="#" class="d-block">{{ Session::get('error')}}</a> -->
         </div>
       </div>
 
@@ -200,8 +206,8 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           
           <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
+            <a href="patient" class="nav-link">
+            <i class="nav-icon fa fa-list-alt"></i>
               <p>
                 PENDAFTARAN
               </p>
@@ -209,7 +215,7 @@
           </li>
           <li class="nav-item">
             <a href="pages/kanban.html" class="nav-link">
-              <i class="nav-icon fas fa-columns"></i>
+              <i class="nav-icon fa fa-stethoscope"></i>
               <p>
               PEMERIKSAAN FISIK
               </p>
@@ -217,7 +223,7 @@
           </li>
           <li class="nav-item">
             <a href="pages/kanban.html" class="nav-link">
-              <i class="nav-icon fas fa-columns"></i>
+              <i class="nav-icon fa fa-eye"></i>
               <p>
               PEMERIKSAAN MATA
               </p>
@@ -225,7 +231,7 @@
           </li>
           <li class="nav-item">
             <a href="pages/kanban.html" class="nav-link">
-              <i class="nav-icon fas fa-columns"></i>
+              <i class="nav-icon fa fa-flask"></i>
               <p>
               LAB
               </p>
@@ -233,7 +239,7 @@
           </li>
           <li class="nav-item">
             <a href="pages/kanban.html" class="nav-link">
-              <i class="nav-icon fas fa-columns"></i>
+              <i class="nav-icon fa fa-thermometer-empty"></i>
               <p>
               RADIOLOGY
               </p>
@@ -241,7 +247,7 @@
           </li>
           <li class="nav-item">
             <a href="pages/kanban.html" class="nav-link">
-              <i class="nav-icon fas fa-columns"></i>
+              <i class="nav-icon fa fa-heartbeat"></i>
               <p>
               EKG
               </p>
@@ -249,7 +255,7 @@
           </li>
           <li class="nav-item">
             <a href="pages/kanban.html" class="nav-link">
-              <i class="nav-icon fas fa-columns"></i>
+              <i class="nav-icon fa fa-credit-card"></i>
               <p>
               KARTU KUNING
               </p>
@@ -257,7 +263,7 @@
           </li>
           <li class="nav-item">
             <a href="pages/kanban.html" class="nav-link">
-              <i class="nav-icon fas fa-columns"></i>
+              <i class="nav-icon fa fa-medkit"></i>
               <p>
               APOTEK
               </p>
@@ -293,11 +299,11 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
+    <strong>Copyright &copy; 2022</strong>
+    <!-- All rights reserved. -->
+    <!-- <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 3.2.0
-    </div>
+    </div> -->
   </footer>
 
   <!-- Control Sidebar -->
@@ -342,5 +348,31 @@
 <script src="{{asset('dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('dist/js/pages/dashboard.js')}}"></script>
+
+<!-- DataTables  & Plugins -->
+<script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{asset('plugins/jszip/jszip.min.js')}}"></script>
+<script src="{{asset('plugins/pdfmake/pdfmake.min.js')}}"></script>
+<script src="{{asset('plugins/pdfmake/vfs_fonts.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+<!-- AdminLTE App -->
+<script src="{{asset('dist/js/adminlte.min.js')}}"></script>
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $("#list_pendaftaran").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["excel", "pdf", "print"]
+    }).buttons().container().appendTo('#list_pendaftaran_wrapper .col-md-6:eq(0)');
+   
+  });
+</script>
 </body>
 </html>

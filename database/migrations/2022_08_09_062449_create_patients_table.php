@@ -29,7 +29,9 @@ return new class extends Migration
             $table->integer('phone');
             $table->string('family_name');
             $table->integer('family_phone');
-            $table->string('vaccination')->nullable();;
+            $table->string('vaccination')->nullable();
+            $table->string('queue_number')->nullable();
+            $table->string('island')->nullable();
             $table->timestamps();
         });
     }

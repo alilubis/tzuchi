@@ -15,14 +15,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('patient/dashboard');
+});
 
+// GET METHODS
+Route::get('/patient',[PatientController::class,'index'])->name('index');
 Route::get('/login',[LoginController::class,'show'])->name('login');
+Route::get('/register',[PatientController::class,'register'])->name('patient');
+
+// POST METHODS
+Route::post('/patient/create',[PatientController::class,'create'])->name('create');
 Route::post('/login',[LoginController::class,'handle'])->name('handle');
 Route::post('/logout',[LoginController::class,'logout'])->name('logout');
 
+// AUTH
 Route::group(['middleware' => 'auth'], function(){
     Route::resource('patient', PatientController::class);
 });
